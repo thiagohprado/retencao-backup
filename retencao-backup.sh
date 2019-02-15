@@ -43,9 +43,9 @@ case "$1" in
 		flag_modointerativo="1"
 	;;
 	*)
-		if [ -n "$1" ] ; then
+		if [ -n "$1" ]; then
 			echo "Parâmetro inválido!"
-			exit 
+			exit 1 
 
 		fi
 	;;
@@ -54,6 +54,10 @@ esac
 # Executa o modo interativo
 if [ "$flag_modointerativo" = 1  ]; then
 	dialog --title "Bem Vindo ao retencao-backup" --yesno "Tem certeza que deseja fazer o backup ?" 5 50
+	if [ "$?" = 1 ]; then
+	 	clear
+		exit 0
+	fi
 	(echo 20 ; sleep 1
 	 echo 40 ; sleep 1
 	 echo 75 ; sleep 1
