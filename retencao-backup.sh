@@ -9,7 +9,7 @@
 #
 ###Versao 1.0.0 - Versão Inicial
 ###Versão 1.0.1 - Adiciona suporte a opções --help e --version
-# 
+###Versão 1.0.2 - Corrige Bug que não deletava os tar.gz antigos 
 #
 ########################### Variaveis ############################
 data=$( /bin/date +%Y-%m-%d )
@@ -45,12 +45,13 @@ case "$1" in
 esac	
 
 # Cria backup local dos arquivos
-cd $dir_destino
-tar -czf retencao-$data.tar.gz -C ../ $dir_origem
+cd "$dir_destino" || exit 1
+tar -czf retencao-"$data".tar.gz -C ../ "$dir_origem"
+cd ../ || exit 1
 
 # Apaga backups antigos, mantendo retencao de 3 dias
-if [ ${qtd_bkp} -gt ${qtd_dia} ]; then
-   /usr/bin/find ${dir_destino} -name '*.tar.gz' -mtime +2 -delete
+if [ "${qtd_bkp}" -gt "${qtd_dia}" ]; then
+   /usr/bin/find "${dir_destino}" -name '*.tar.gz' -mtime +2 -delete
 fi
 
 exit 0
