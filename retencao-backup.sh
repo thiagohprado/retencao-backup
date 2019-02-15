@@ -11,6 +11,7 @@
 ###Versão 1.0.1 - Adiciona suporte a opções --help e --version
 ###Versão 1.0.2 - Corrige Bug que não deletava os tar.gz antigos 
 ###Versão 1.0.3 - Adiciona suporte a opção --interactive
+###Versão 1.0.4 - Corrige Bug que não cancelava a execução do programa no dialog yesno
 #
 ########################### Variaveis ############################
 data=$( /bin/date +%Y-%m-%d )
